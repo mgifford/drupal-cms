@@ -1,0 +1,82 @@
+{#
+/**
+ * @file
+ * Template for an accessible card component.
+ *
+ * Generated to verify drupal-a11y-dom skill rules:
+ * - No redundant ARIA roles on native semantic elements.
+ * - Decorative SVG icon uses aria-hidden="true" (visible to sighted users,
+ *   hidden from AT) — correct because the adjacent text label is present.
+ * - aria-hidden="true" is NOT placed on a focusable element.
+ * - Visually-hidden screen-reader suffix uses Drupal's core .visually-hidden
+ *   class, not a hand-rolled equivalent.
+ * - SVG uses fill="currentColor" so it inherits text colour in dark mode
+ *   and forced-colours mode.
+ * - "Read more" link has a 24×24 CSS px minimum hit area (enforced in CSS;
+ *   documented here for reviewers).
+ * - No role="button" on a <button>, no role="navigation" on a <nav>, etc.
+ *
+ * Available variables:
+ *   - title: The card heading text (string, already translated by preprocess).
+ *   - url: The URL object / string for the "Read more" link.
+ *   - attributes: HTML attributes for the outer <article> element.
+ *   - heading_level: The heading level to render (defaults to 3).
+ */
+#}
+{%
+  set heading_level = heading_level|default(3)
+%}
+
+{#
+  Use <article> for a self-contained card; no role="article" needed
+  because <article> carries its own implicit ARIA role.
+  Drupal's `attributes` object merges preprocess-supplied classes safely.
+#}
+<article{{ attributes.addClass('card') }}>
+
+  <{{ 'h' ~ heading_level }} class="card__title">
+    {{ title }}
+  </{{ 'h' ~ heading_level }}>
+
+  <div class="card__footer">
+    {#
+      The SVG is purely decorative here: the adjacent link text already
+      describes the destination. aria-hidden="true" hides it from AT.
+
+      Rules applied (drupal-a11y-dom):
+      • aria-hidden="true" on an inert SVG is correct when sighted users
+        see it but it would be confusing/duplicate for screen-reader users.
+      • Never put aria-hidden="true" on a focusable element — the <svg>
+        has no tabindex and is not interactive, so this is safe.
+      • fill="currentColor" so the icon inherits active text colour in
+        dark mode and forced-colours/High Contrast mode.
+    #}
+    <a href="{{ url }}" class="card__link">
+      <svg
+        class="card__icon"
+        aria-hidden="true"
+        focusable="false"
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="currentColor"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        {# Simple right-arrow path — decorative only. #}
+        <path d="M6 3l5 5-5 5V3z"/>
+      </svg>
+
+      {#
+        Visible link text. By itself "Read more" is ambiguous for AT users
+        scanning a list of cards, so a visually-hidden suffix adds context.
+
+        drupal-a11y-dom rule: use Drupal's core .visually-hidden class.
+        Do NOT redefine it locally; core ships it. Do NOT use display:none
+        or visibility:hidden here — those would hide the text from AT too.
+      #}
+      <span class="card__link-visible">{{ 'Read more'|t }}</span>
+      <span class="visually-hidden">{{ 'about %title'|t({'%title': title}) }}</span>
+    </a>
+  </div>
+
+</article>

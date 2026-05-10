@@ -1,0 +1,4 @@
+[submodule "ai_best_practices"]
+	path = ai_best_practices
+	url = https://git.drupalcode.org/issue/ai_best_practices-3581685.git
+	branch = claude/nice-kilby-14b831

@@ -1,0 +1,7 @@
+name: 'Accessibility Test'
+type: module
+description: 'Test module for verifying drupal-accessibility skill output. Not for production use.'
+package: Custom
+core_version_requirement: ^10.3 || ^11
+dependencies:
+  - drupal:system

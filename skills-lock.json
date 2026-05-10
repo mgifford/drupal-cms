@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "skills": {
+    "drupal-accessibility": {
+      "source": "project/ai_best_practices",
+      "sourceType": "git",
+      "skillPath": "skills/drupal-accessibility/SKILL.md",
+      "computedHash": "fe8cd423dc9af9d75266d765ca967fb285f905fd6fde57d34d208018b2a7df4a"
+    },
+    "drupal-automated-testing": {
+      "source": "project/ai_best_practices",
+      "sourceType": "git",
+      "skillPath": "skills/drupal-automated-testing/SKILL.md",
+      "computedHash": "b76193e9e0e72bce408c6cd78ce31a6f5394ac868d920931e65efdc4311e4f7c"
+    },
+    "drupal-writing-documentation": {
+      "source": "project/ai_best_practices",
+      "sourceType": "git",
+      "skillPath": "skills/drupal-writing-documentation/SKILL.md",
+      "computedHash": "335b526bb2468011b7269cfa45fd4c16cb98fc67f3871ffdd0da7325b514071d"
+    }
+  }
+}
