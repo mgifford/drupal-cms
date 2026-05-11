@@ -1,0 +1,29 @@
+--- a/src/main.css
++++ b/src/main.css
+@@ -340,6 +340,26 @@
+   /* Alter the logo in the footer manually for the dark background. */
+   .site-footer .branding img {
+     filter: brightness(0) invert(92%) sepia(51%) saturate(793%) hue-rotate(329deg) brightness(105%) contrast(101%);
++  }
++
++  /*
++   * WCAG 2.2 SC 1.4.3 fix: placeholder text contrast in the footer newsletter form.
++   *
++   * The .site-footer has `text-primary-foreground` (white, #ffffff) which is inherited
++   * by input placeholder text. When the input background is `--background` (#efefef),
++   * white placeholder text gives a 1.14:1 contrast ratio — far below the 4.5:1 minimum.
++   *
++   * This rule re-asserts `color: var(--color-muted-foreground)` (#333333) on inputs
++   * inside the footer so placeholder text reads at ~9.7:1 against the input background.
++   * Placed in @layer utilities so it wins over the base-layer placeholder rule.
++   */
++  .site-footer input[type="text"],
++  .site-footer input[type="email"],
++  .site-footer input[type="tel"],
++  .site-footer input[type="url"],
++  .site-footer input[type="search"],
++  .site-footer textarea {
++    color: var(--color-muted-foreground);
+   }
+ 
+   /* Add a utility class for full-width elements. */

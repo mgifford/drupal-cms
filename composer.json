@@ -100,6 +100,7 @@
         "league/commonmark": "^2.4"
     },
     "require-dev": {
+        "cweagans/composer-patches": "^1.7",
         "drush/drush": "^13.7"
     },
     "conflict": {
@@ -110,6 +111,7 @@
     "config": {
         "allow-plugins": {
             "composer/installers": true,
+            "cweagans/composer-patches": true,
             "drupal/core-composer-scaffold": true,
             "drupal/core-project-message": true,
             "drupal/core-recipe-unpack": true,
@@ -163,6 +165,11 @@
         },
         "drupal-core-vendor-hardening": {
             "composer/composer": false
+        },
+        "patches": {
+            "drupal/haven_theme": {
+                "WCAG 2.2 SC 1.4.3: fix white placeholder text contrast in footer newsletter form (1.14:1 → 9.7:1)": "patches/haven_theme-footer-placeholder-contrast-3581685.patch"
+            }
         }
     },
     "scripts": {
